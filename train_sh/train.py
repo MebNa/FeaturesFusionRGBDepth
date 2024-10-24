@@ -261,11 +261,7 @@ def run(
                 if current_valid_loss < best_valid_loss:
                     
                     torch.save(model.state_dict(),save_model+"best.pt")
-                    cpu_model = model.eval().cpu()
-                    torch_input = input[:1,...]
-                    
-                    onnx_program = torch.onnx.dynamo_export(cpu_model, torch_input)
-                    onnx_program.save("best_onnx_model.onnx")
+                   
                     best_valid_loss = current_valid_loss
  
                
